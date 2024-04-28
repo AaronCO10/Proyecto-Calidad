@@ -96,7 +96,7 @@
                     </div>
 
                     <div>
-                        <a href="{{ route('banner.create') }}"
+                        <a href="{{ route('solicitudes.create') }}"
                             style="text-decoration: none; padding: 10px 20px; background-color: #c90f0f; color: white; font-weight: bold; font-size: 20px; border-radius: 15px">
                             QUIERO DONAR
                         </a>

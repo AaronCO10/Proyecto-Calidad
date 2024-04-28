@@ -16,6 +16,6 @@ class CampaniaSeeder extends Seeder
         //
         Campania::create([
             'nombre' => 'Primera Campaña',
-            'fecha_inicio' => '01-04-2024']);
+            'fecha_inicio' => now()]);
     }
 }

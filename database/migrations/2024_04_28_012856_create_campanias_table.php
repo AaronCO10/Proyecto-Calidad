@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('campanias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('fecha_inicio');
-            $table->string('fecha_fin')->nullable();
+            $table->timestamp('fecha_inicio')->useCurrent();
+            $table->timestamp('fecha_fin')->nullable();
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });

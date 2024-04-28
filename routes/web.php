@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\BannerController;
-use App\Http\Controllers\DonadoreController;
-use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\CampaniaController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DonadoreController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\SolicitudDonacionController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::resource('banner','App\Http\Controllers\BannerController');
-Route::resource('donadore','App\Http\Controllers\DonadoreController');
-Route::resource('solicitud','App\Http\Controllers\SolicitudController');
-Route::resource('principal','App\Http\Controllers\PrincipalController');
+
+
+Route::resource('campanias', CampaniaController::class);
+Route::resource('solicitudes', SolicitudDonacionController::class);
 
 
 Auth::routes();

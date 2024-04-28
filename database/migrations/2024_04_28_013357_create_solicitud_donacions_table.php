@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('solicitud_donacions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Campania::class);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('campania_id')->constrained()->onDelete('cascade');
             $table->string('talla');
             $table->string('peso');
             $table->boolean('acepta_terminos')->default(false);
-            $table->enum('estado', ['Pendiente', 'Puede Donar','No Puede Donar'])->default('Pendiente');
+            $table->enum('estado', ['Pendiente', 'Puede Donar', 'No Puede Donar'])->default('Pendiente');
             $table->timestamps();
         });
     }

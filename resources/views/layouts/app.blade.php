@@ -104,23 +104,13 @@
                 aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            {{-- <img src="http://localhost/DONADORESPERU/resources/views/banner/Maps.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top"></a>
-                    <a class="navbar-brand" style="color: #ffffff" href="{{route('banner.mapa')}}">Locales Autorizados</a> --}}
-
             @can('donador')
-                <a class="navbar-brand" id="miBoton" style="color: #ffffff"
-                    href="{{ route('donadore.create') }}">DONAR</a>
-            @endcan
-            @can('donador')
-                <a class="navbar-brand" style="color: #ffffff" href="{{ route('solicitud.create') }}">SOLICITAR SANGRE</a>
-            @endcan
-            @can('donadoractivo')
-                <a class="navbar-brand" style="color: #ffffff" href="{{ route('solicitud.create') }}">SOLICITAR SANGRE</a>
+                <a class="navbar-brand" style="color: #ffffff" href="{{ route('solicitudes.index') }}">Ver Mis
+                    Solicitudes</a>
             @endcan
             @can('admin')
-                <a class="navbar-brand" style="color: #ffffff" href="{{ route('banner.index') }}">Ver Campaña</a>
-                <a class="navbar-brand" style="color: #ffffff" href="{{ route('solicitud.index') }}">Ver Solicitudes</a>
-                <a class="navbar-brand" style="color: #ffffff" href="{{ route('donadore.index') }}">Ver Donadores</a>
+                <a class="navbar-brand" style="color: #ffffff" href="{{ route('campanias.index') }}">Ver Campañas</a>
+                <a class="navbar-brand" style="color: #ffffff" href="{{ route('solicitudes.index') }}">Ver Solicitudes</a>
             @endcan
             <div class="collapse navbar-collapse " id="navbarSupportedContent" style="margin-right: 5%">
                 <ul class="navbar-nav ms-auto" style="float: right">
