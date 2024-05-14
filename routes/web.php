@@ -3,10 +3,12 @@
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CampaniaController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\DonadoreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\SolicitudDonacionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('campanias', CampaniaController::class);
 Route::resource('solicitudes', SolicitudDonacionController::class);
+Route::post('/solicitante/{id}', [UserController::class, 'updateSolicitante'])->name('solicitante.update');
+Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
 
 
 Auth::routes();

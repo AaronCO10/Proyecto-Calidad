@@ -10,6 +10,7 @@
                 <th>Nombre</th>
                 <th>Fecha de Inicio</th>
                 <th>Fecha de Fin</th>
+                <th>Unicdades Donadas</th>
                 <th>Activo</th>
                 <th>Acciones</th>
             </tr>
@@ -20,6 +21,7 @@
                     <td>{{ $campania->nombre }}</td>
                     <td>{{ $campania->fecha_inicio }}</td>
                     <td>{{ $campania->fecha_fin }}</td>
+                    <td>{{ $campania->unidades_donadas }}</td>
                     <td>{{ $campania->activo ? 'Sí' : 'No' }}</td>
                     <td>
                         <a href="{{ route('campanias.show', $campania->id) }}" class="btn btn-info">Detalles</a>

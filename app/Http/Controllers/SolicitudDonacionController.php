@@ -69,7 +69,7 @@ class SolicitudDonacionController extends Controller
             ]);
 
             $user = User::create([
-                'name' => $request->nombres. ' '. $request->apellidos,
+                'name' => $request->nombres . ' ' . $request->apellidos,
                 'email' => $request->email,
                 'password' => bcrypt($request->dni),
                 'nombres' => $request->nombres,

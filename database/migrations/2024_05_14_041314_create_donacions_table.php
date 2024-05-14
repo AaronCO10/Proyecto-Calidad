@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campanias', function (Blueprint $table) {
+        Schema::create('donacions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->timestamp('fecha_inicio')->useCurrent();
-            $table->timestamp('fecha_fin')->nullable();
-            $table->integer('unidades_donadas')->default(0);
-            $table->boolean('activo')->default(true);
+            // Asegúrate de que la tabla y columna de referencia existan y estén correctamente definidas
+            $table->foreignId('solicitud_id')->constrained('solicitud_donacions')->onDelete('cascade');
+            $table->integer('unidades');
             $table->timestamps();
-        });
+        });        
     }
 
     /**
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campanias');
+        Schema::dropIfExists('donacions');
     }
 };
