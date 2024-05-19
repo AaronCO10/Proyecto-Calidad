@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Donacion;
+use App\Models\BancoSangre;
 use Illuminate\Http\Request;
 use App\Models\SolicitudDonacion;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class DonacionesController extends Controller
 {
@@ -33,24 +37,33 @@ class DonacionesController extends Controller
         try {
             DB::beginTransaction();
             //code...
+            $solicitud = SolicitudDonacion::find($request->solicitud_id);
+            $donante = User::find($solicitud->user_id);
             $donacion = new Donacion();
             $donacion->solicitud_id = $request->solicitud_id;
+            $donacion->tipo_sangre_id = $donante->tipo_sangre_id;
             $donacion->unidades = $request->unidades;
             $donacion->save();
-        
-            // Actualizar la campaña asociada, ejemplo básico
-            $solicitud = SolicitudDonacion::find($request->solicitud_id);
+
+            // Actualizar la campaña asociada
             $campania = $solicitud->campania;
             $campania->unidades_donadas += $request->unidades;
             $campania->save();
+
+            // Actualizar el banco de sangre
+            $bancoSangre = BancoSangre::where('tipo_sangre_id',$donante->tipo_sangre_id)->first();
+            $bancoSangre->unidades += $request->unidades;
+            $bancoSangre->save();
+
             DB::commit();
             return response()->json(['success' => 'Donación registrada correctamente.']);
-        } catch (\Throwable $th) {
+        } catch (Exception $e) {
             DB::rollback();
             return response()->json(['error' => 'Donación no se pud registrar.'],500);
+            Log::error($e);
         }
         //
-    
+
     }
 
     /**

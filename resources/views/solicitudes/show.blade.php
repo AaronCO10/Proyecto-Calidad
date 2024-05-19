@@ -8,14 +8,14 @@
         <div
             style="
                 display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
     gap: 5px;
             ">
 
             <div style="grid-row: 1 / span 2;">
 
-               
+
                     <div
                         style="background-color: white; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19); border-radius: 10px; padding: 20px; margin: 20px;">
                         <h2 style="color: #c90f0f; font-weight: bold">Información del Solicitante</h2>
@@ -33,10 +33,10 @@
                             <p><strong>DNI:</strong> {{ $solicitud->user->dni }}</p>
                             <p><strong>Fecha de Nacimiento:</strong> {{ $solicitud->user->fecha_nacimiento }}</p>
                             <p><strong>Sexo:</strong> {{ $solicitud->user->sexo }}</p>
-                            <p><strong>Tipo de Sangre:</strong> {{ $solicitud->user->tipo_sangre }}</p>
+                            <p><strong>Tipo de Sangre:</strong> {{ $solicitud->user->tiposangre->nombre }}</p>
                             <p><strong>Teléfono:</strong> {{ $solicitud->user->telefono }}</p>
                         </div>
-            
+
 
             </div>
 
@@ -45,7 +45,7 @@
                 <div
                     style="background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19);
-        border-radius: 10px; 
+        border-radius: 10px;
         padding: 20px;
         margin: 20px;">
                     <h2 style="color: #c90f0f; font-weight: bold">Información de la Campaña</h2>
@@ -61,7 +61,7 @@
                 <div
                     style="background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19);
-        border-radius: 10px; 
+        border-radius: 10px;
         padding: 20px;
         margin: 20px;">
                     <h2 style="color: #c90f0f; font-weight: bold">Información de la Solicitud</h2>
@@ -69,12 +69,12 @@
                     <p><strong>Talla(cm) del solicitante:</strong> {{ $solicitud->talla }}</p>
                     <p><strong>Peso(Kg) del solicitante:</strong> {{ $solicitud->peso }}</p>
                     <p><strong>Estado:</strong> {{ $solicitud->estado }}</p>
-                    
+
                 </div>
             </div>
 
         </div>
 
     </div>
-    
+
 @endsection

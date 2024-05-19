@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Campania;
-use App\Models\SolicitudDonacion;
-use App\Models\User;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Campania;
+use App\Models\TipoSangre;
 use Illuminate\Http\Request;
+use App\Models\SolicitudDonacion;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SolicitudDonacionController extends Controller
@@ -39,7 +41,8 @@ class SolicitudDonacionController extends Controller
 
     public function create()
     {
-        return view('solicitudes.create');
+        $tiposSangre = TipoSangre::all();
+        return view('solicitudes.create',['tiposSangre' => $tiposSangre]);
     }
 
     public function store(Request $request)
@@ -63,7 +66,7 @@ class SolicitudDonacionController extends Controller
                 'dni' => 'required',
                 'fecha_nacimiento' => 'required|date',
                 'sexo' => 'required',
-                'tipo_sangre' => 'required',
+                'tipo_sangre_id' => 'required',
                 'telefono' => 'required',
                 // Puedes agregar más validaciones según sea necesario
             ]);
@@ -77,7 +80,7 @@ class SolicitudDonacionController extends Controller
                 'dni' => $request->dni,
                 'fecha_nacimiento' => $request->fecha_nacimiento,
                 'sexo' => $request->sexo,
-                'tipo_sangre' => $request->tipo_sangre,
+                'tipo_sangre_id' => $request->tipo_sangre_id,
                 'telefono' => $request->telefono,
             ])->assignRole('donador');
         }
@@ -116,10 +119,10 @@ class SolicitudDonacionController extends Controller
     {
         $user = Auth::user();
         $solicitud = SolicitudDonacion::findOrFail($id);
-
+        $tiposSangre = TipoSangre::all();
         // Verificar si el usuario es administrador para permitir la edición del estado
         if ($user->roles()->where('name', 'admin')->exists()) {
-            return view('solicitudes.edit', compact('solicitud', 'user'));
+            return view('solicitudes.edit', compact('solicitud', 'user','tiposSangre'));
         } else {
             // Si el usuario no es administrador, redirigir al index o mostrar un mensaje de error
             return redirect()->route('solicitudes.index')->with('error', 'No tienes permiso para editar esta solicitud.');

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donacions', function (Blueprint $table) {
+        Schema::create('tipo_sangres', function (Blueprint $table) {
             $table->id();
-            // Asegúrate de que la tabla y columna de referencia existan y estén correctamente definidas
-            $table->foreignId('solicitud_id')->constrained('solicitud_donacions')->onDelete('cascade');
-            $table->integer('unidades');
+            $table->string('nombre');
             $table->timestamps();
-        });        
+        });
     }
 
     /**
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donacions');
+        Schema::dropIfExists('tipo_sangres');
     }
 };

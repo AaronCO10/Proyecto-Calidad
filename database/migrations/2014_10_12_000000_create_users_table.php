@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('dni');
             $table->string('fecha_nacimiento');
             $table->string('sexo');
-            $table->string('tipo_sangre');
+            $table->foreignId('tipo_sangre_id')->constrained('tipo_sangres')->onDelete('cascade');
             $table->string('telefono');
             $table->timestamps();
 

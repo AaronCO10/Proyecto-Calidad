@@ -4,10 +4,10 @@
 @section('content')
     <div style="display: flex; justify-content: center">
         <div
-            style="width: 60vw; 
+            style="width: 60vw;
             background-color: white;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19);
-            border-radius: 10px; 
+            border-radius: 10px;
             padding: 20px;
             margin: 20px;">
 
@@ -69,9 +69,15 @@
                     </div>
                     <!-- Agrega el resto de campos con sus respectivas validaciones y mensajes de error -->
                     <div class="form-group">
-                        <label for="tipo_sangre">Tipo de Sangre:</label>
-                        <input type="text" name="tipo_sangre" id="tipo_sangre" class="form-control" required>
-                        @error('tipo_sangre')
+                        <label for="tipo_sangre_id">Tipo de Sangre:</label>
+                        {{-- <input type="text" name="tipo_sangre" id="tipo_sangre" class="form-control" required> --}}
+                        <select name="tipo_sangre_id" id="tipo_sangre_id" class="form-control" required>
+                            <option disabled selected>Seleccione un tipo de sangre</option>
+                            @foreach($tiposSangre as $tipo)
+                                <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
+                            @endforeach
+                        </select>
+                        @error('tipo_sangre_id')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>

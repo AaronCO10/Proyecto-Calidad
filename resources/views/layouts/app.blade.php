@@ -111,6 +111,7 @@
             @can('admin')
                 <a class="navbar-brand" style="color: #ffffff" href="{{ route('campanias.index') }}">Ver Campañas</a>
                 <a class="navbar-brand" style="color: #ffffff" href="{{ route('solicitudes.index') }}">Ver Solicitudes</a>
+                <a class="navbar-brand" style="color: #ffffff" href="{{ route('bancosangre.index') }}">Banco Sangre</a>
             @endcan
             <div class="collapse navbar-collapse " id="navbarSupportedContent" style="margin-right: 5%">
                 <ul class="navbar-nav ms-auto" style="float: right">

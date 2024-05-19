@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
             'dni' => '12345678',
             'fecha_nacimiento' => '1990-01-01',
             'sexo' => 'Masculino',
-            'tipo_sangre' => 'O+',
+            'tipo_sangre_id' => 1,
             'telefono' => '123456789',
         ])->assignRole('admin');
 
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
             'dni' => '87654321',
             'fecha_nacimiento' => '1995-05-05',
             'sexo' => 'Masculino',
-            'tipo_sangre' => 'A-',
+            'tipo_sangre_id' => 2,
             'telefono' => '987654321',
         ])->assignRole('donador');
     }

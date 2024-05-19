@@ -5,16 +5,17 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 
-use App\Models\Campania;
-use App\Models\SolicitudDonacion;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Campania;
+use App\Models\TipoSangre;
+use App\Models\SolicitudDonacion;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -36,7 +37,7 @@ class User extends Authenticatable
         'dni', // Documento Nacional de Identidad (DNI) del usuario
         'fecha_nacimiento', // Fecha de nacimiento del usuario
         'sexo', // Sexo del usuario
-        'tipo_sangre', // Tipo de sangre del usuario
+        'tipo_sangre_id', // Tipo de sangre del usuario
         'telefono', // Teléfono del usuario
     ];
 
@@ -80,5 +81,10 @@ class User extends Authenticatable
     {
         $twoMonthsAgo = Carbon::now()->subMonths(2);
         return $this->solicitudes()->where('created_at', '>=', $twoMonthsAgo)->exists();
+    }
+
+    public function tiposangre()
+    {
+        return $this->belongsTo(TipoSangre::class,'tipo_sangre_id','id');
     }
 }

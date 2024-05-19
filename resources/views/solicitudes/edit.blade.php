@@ -8,7 +8,7 @@
         <div
             style="
                 display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
     gap: 5px;
             ">
@@ -33,7 +33,7 @@
                             <p><strong>DNI:</strong> {{ $solicitud->user->dni }}</p>
                             <p><strong>Fecha de Nacimiento:</strong> {{ $solicitud->user->fecha_nacimiento }}</p>
                             <p><strong>Sexo:</strong> {{ $solicitud->user->sexo }}</p>
-                            <p><strong>Tipo de Sangre:</strong> {{ $solicitud->user->tipo_sangre }}</p>
+                            <p><strong>Tipo de Sangre:</strong> {{ $solicitud->user->tiposangre->nombre }}</p>
                             <p><strong>Teléfono:</strong> {{ $solicitud->user->telefono }}</p>
                         </div>
                         <div id="editableForm" style="display: none;">
@@ -54,8 +54,12 @@
                                     value="{{ $solicitud->user->fecha_nacimiento }}" class="form-control" />
                                 <input type="text" name="sexo" value="{{ $solicitud->user->sexo }}"
                                     class="form-control" />
-                                <input type="text" name="tipo_sangre" value="{{ $solicitud->user->tipo_sangre }}"
-                                    class="form-control" />
+                                    <select name="tipo_sangre_id" id="tipo_sangre_id" class="form-control" required>
+                                        <option disabled>Seleccione un tipo de sangre</option>
+                                        @foreach($tiposSangre as $tipo)
+                                            <option value="{{ $tipo->id }}" {{ $solicitud->user->tiposangre->id == $tipo->id ? 'selected' : '' }}>{{ $tipo->nombre }}</option>
+                                        @endforeach
+                                    </select>
                                 <input type="text" name="telefono" value="{{ $solicitud->user->telefono }}"
                                     class="form-control" />
                                 <input type="text" name="id_solicitud" value="{{ $solicitud->id }}" class="form-control"
@@ -75,7 +79,7 @@
                 <div
                     style="background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19);
-        border-radius: 10px; 
+        border-radius: 10px;
         padding: 20px;
         margin: 20px;">
                     <h2 style="color: #c90f0f; font-weight: bold">Información de la Campaña</h2>
@@ -91,7 +95,7 @@
                 <div
                     style="background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19);
-        border-radius: 10px; 
+        border-radius: 10px;
         padding: 20px;
         margin: 20px;">
                     <h2 style="color: #c90f0f; font-weight: bold">Información de la Solicitud</h2>
