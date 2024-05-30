@@ -101,7 +101,7 @@
                     <h2 style="color: #c90f0f; font-weight: bold">Información de la Solicitud</h2>
                     {{-- <p><strong>ID de Solicitud:</strong> {{ $solicitud->id }}</p> --}}
                     <p><strong>Talla(cm) del solicitante:</strong> {{ $solicitud->talla }}</p>
-                    <p><strong>Peso(Kg) del solicitante:</strong> {{ $solicitud->peso }}</p>
+                    <p><strong>Peso(Kg) del solicitante:</strong>  <input name="pesopersona" value="{{ $solicitud->peso }}" readonly /> </p>
                     <p><strong>Estado:</strong> {{ $solicitud->estado }}</p>
                     @if ($user->isAdmin())
                         <form action="{{ route('solicitudes.update', $solicitud->id) }}" method="POST">
