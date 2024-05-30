@@ -13,6 +13,8 @@
         @if ($puedesolicitar)
             <a href="{{ route('solicitudes.create') }}" class="btn btn-primary">Crear Solicitud</a>
         @endif
+
+        <a href="{{ route('solicitudes_report') }}" class="btn btn-primary">Generar Reporte</a>
         <table class="table">
             <thead>
                 <tr>

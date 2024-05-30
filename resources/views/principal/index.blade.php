@@ -1,5 +1,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+
 @extends('layouts.app')
 
 @section('content')
@@ -101,6 +104,30 @@
                             QUIERO DONAR
                         </a>
                     </div>
+                </section>
+
+                <section>
+
+                    <h2>CENTROS DE DONACION</h2>
+                    <div id='map' style='width: 100%; height: 600px;'></div>
+
+                    <script>
+                        mapboxgl.accessToken = 'pk.eyJ1IjoicGVkcm9hcXMwNSIsImEiOiJja2ZpZ29iaWowZDVwMnBsM3M2MGxkaWQxIn0.DYp69EtGMZKWNDF6dzuzmQ';
+
+                        var map = new mapboxgl.Map({
+                            container: 'map',
+                            style: 'mapbox://styles/mapbox/streets-v11',
+                            center: [-78.49810304473388, -7.162048285889808], // Coordenadas de centro predeterminadas
+                            zoom: 9 // Nivel de zoom predeterminado
+                        });
+
+                        // Añadir marcadores desde PHP
+                        @foreach ($centros as $centro)
+                            new mapboxgl.Marker()
+                                .setLngLat([{{ $centro->longitud }}, {{ $centro->latitud }}])
+                                .addTo(map);
+                        @endforeach
+                    </script>
                 </section>
 
             </div>

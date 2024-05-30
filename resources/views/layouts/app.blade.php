@@ -112,6 +112,7 @@
                 <a class="navbar-brand" style="color: #ffffff" href="{{ route('campanias.index') }}">Ver Campañas</a>
                 <a class="navbar-brand" style="color: #ffffff" href="{{ route('solicitudes.index') }}">Ver Solicitudes</a>
                 <a class="navbar-brand" style="color: #ffffff" href="{{ route('bancosangre.index') }}">Banco Sangre</a>
+                <a class="navbar-brand" style="color: #ffffff" href="{{ route('centrosdonacion.index') }}">Centros de donacion</a>
             @endcan
             <div class="collapse navbar-collapse " id="navbarSupportedContent" style="margin-right: 5%">
                 <ul class="navbar-nav ms-auto" style="float: right">
@@ -126,11 +127,11 @@
                             </li>
                         @endif
 
-                        @if (Route::has('register'))
+                        {{-- @if (Route::has('register'))
                             <li class="nav-item"style="float: right">
                                 <a class="nav-link" style="color: #ffffff"href="{{ route('register') }}">Registrate</a>
                             </li>
-                        @endif
+                        @endif --}}
                     @else
                         <li class="nav-item dropdown"style="float: right">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" style="color: #ffffff"

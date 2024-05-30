@@ -8,9 +8,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CampaniaController;
 use App\Http\Controllers\DonadoreController;
+use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\BancoSangreController;
+use App\Http\Controllers\CentrosDonacionController;
 use App\Http\Controllers\SolicitudDonacionController;
 
 /*
@@ -28,8 +30,11 @@ use App\Http\Controllers\SolicitudDonacionController;
 Route::resource('campanias', CampaniaController::class);
 Route::resource('solicitudes', SolicitudDonacionController::class);
 Route::resource('bancosangre', BancoSangreController::class);
+Route::resource('centrosdonacion', CentrosDonacionController::class);
 Route::post('/solicitante/{id}', [UserController::class, 'updateSolicitante'])->name('solicitante.update');
 Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
+
+Route::get('/solicitudes-report', [ReportesController::class, 'solicitudesReport'])->name('solicitudes_report');
 
 
 Auth::routes();
