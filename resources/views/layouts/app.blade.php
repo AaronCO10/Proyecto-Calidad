@@ -96,8 +96,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md "style="background-color: #000000; box-shadow: 0 0 500px #ffffff;"
             style="position:fixed" style="top:0">
-            <img src="http://localhost/DONADORESPERU/resources/views/banner/LogoDP.png" alt="Logo" width="100"
-                height="40" class="d-inline-block align-text-top"></a>
+            <div style="padding: 6px 10px">
+                <img src="{{ asset('assets/logo.png') }}" alt="Logo" width="40px" class="d-inline-block align-text-top"></a>
+            </div>
             <a class="navbar-brand" style="color: #ffffff" href="{{ url('/') }}">Donadores Peru</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
