@@ -4,6 +4,9 @@
 <div style="width: 80vw; display: flex; justify-content: center; flex-direction: column; margin: auto" >
 
     <h1>BANCO SANGRE</h1>
+
+    <a href="{{ route('transfusiones.index') }}" class="btn btn-success mb-3" style="width: 300px">Transfusiones</a>
+
     <div class="row">
         <div class="col">
             <ul class="nav nav-tabs" id="bancosangre-tabs" role="tablist">

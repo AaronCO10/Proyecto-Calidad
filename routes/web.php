@@ -12,6 +12,7 @@ use App\Http\Controllers\ReportesController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\BancoSangreController;
+use App\Http\Controllers\TransfusionController;
 use App\Http\Controllers\CentrosDonacionController;
 use App\Http\Controllers\SolicitudDonacionController;
 
@@ -33,6 +34,7 @@ Route::resource('bancosangre', BancoSangreController::class);
 Route::resource('centrosdonacion', CentrosDonacionController::class);
 Route::post('/solicitante/{id}', [UserController::class, 'updateSolicitante'])->name('solicitante.update');
 Route::post('/donaciones', [DonacionesController::class, 'store'])->name('donaciones.store');
+Route::resource('transfusiones', TransfusionController::class);
 
 Route::get('/solicitudes-report', [ReportesController::class, 'solicitudesReport'])->name('solicitudes_report');
 
