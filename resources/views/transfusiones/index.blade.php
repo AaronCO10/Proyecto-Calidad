@@ -10,6 +10,7 @@
             <tr>
                 <th>ID</th>
                 <th>Nombres</th>
+                <th>Fecha Transfucion</th>
                 <!-- Agregar más columnas según tus necesidades -->
                 <th>Acciones</th>
             </tr>
@@ -19,6 +20,7 @@
                 <tr>
                     <td>{{ $transfusion->id }}</td>
                     <td>{{ $transfusion->nombres }}</td>
+                    <td>{{ $transfusion->created_at->format('d/m/Y') }}</td>
                     <!-- Agregar más columnas según tus necesidades -->
                     <td>
                         <a href="{{ route('transfusiones.edit', $transfusion->id) }}" class="btn btn-primary">Editar</a>

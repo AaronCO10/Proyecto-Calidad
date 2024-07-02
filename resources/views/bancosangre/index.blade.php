@@ -30,16 +30,19 @@
                                     <th>Donante</th>
                                     <th>Unidades Donadas</th>
                                     <th>Fecha</th>
+                                    <th>Fecha caducidad</th>
                                 </tr>
                             </thead>
                             <tbody>
                                     @foreach ($banco->tiposangre->donaciones as $donacion)
+                                    {{-- $fecha_caducidad = $donacion->created_at->add(new DateInterval('P40D')); --}}
                                         <tr>
                                             <td>{{ $donacion->id }}</td>
                                             <td>{{ $donacion->solicitudDonacion->campania->nombre }}</td>
                                             <td>{{ $donacion->solicitudDonacion->user->nombres .' '.$donacion->solicitudDonacion->user->apellidos  }}</td>
                                             <td>{{ $donacion->unidades }}</td>
                                             <td>{{ $donacion->created_at->format('d/m/Y') }}</td>
+                                            <td>{{ $donacion->created_at->add(new DateInterval('P40D'))->format('d/m/Y') }}</td>
                                         </tr>
                                     @endforeach
                             </tbody>
