@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('solicitud_id')->constrained('solicitud_donacions')->onDelete('cascade');
             $table->foreignId('tipo_sangre_id')->constrained('tipo_sangres')->onDelete('cascade');
             $table->integer('unidades');
+            $table->boolean('usada')->default(false);
             $table->timestamps();
         });
     }

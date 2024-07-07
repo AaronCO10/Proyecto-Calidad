@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Donacion;
 use App\Models\TipoSangre;
 use App\Models\BancoSangre;
 use App\Models\Transfusion;
@@ -28,6 +29,16 @@ class TransfusionController extends Controller
         Transfusion::create($request->all());
 
         $bancoSangre = BancoSangre::where('tipo_sangre_id',$request->tipo_sangre_id)->first();
+        $donaciones = Donacion::where('tipo_sangre_id',$request->tipo_sangre_id)->orderBy('created_at','asc')->get();
+        $temp = $request->unidades;
+        foreach ($donaciones as $donacion) {
+            $donacion->usada = true;
+            $temp = $temp-$donacion->unidades;
+            $donacion->save();
+            if ($temp <= 0) {
+                break;
+            }
+        }
         $bancoSangre->unidades -= $request->unidades;
         $bancoSangre->save();
         return redirect()->route('transfusiones.index');
@@ -69,11 +80,31 @@ class TransfusionController extends Controller
                 $bancoSangre = BancoSangre::where('tipo_sangre_id',$transfusion->tipo_sangre_id)->first();
                 $bancoSangre->unidades -= $unidades;
                 $bancoSangre->save();
+                $donaciones = Donacion::where('tipo_sangre_id',$request->tipo_sangre_id)->orderBy('created_at','asc')->get();
+                $temp = $unidades;
+                foreach ($donaciones as $donacion) {
+                    $donacion->usada = true;
+                    $temp = $temp-$donacion->unidades;
+                    $donacion->save();
+                    if ($temp <= 0) {
+                        break;
+                    }
+                }
             } else {
                 $unidades = $transfusion->unidades - $request->unidades;
                 $bancoSangre = BancoSangre::where('tipo_sangre_id',$transfusion->tipo_sangre_id)->first();
                 $bancoSangre->unidades += $unidades;
                 $bancoSangre->save();
+                $donaciones = Donacion::where('tipo_sangre_id',$request->tipo_sangre_id)->where('usada',true)->orderBy('created_at','desc')->get();
+                $temp = $unidades;
+                foreach ($donaciones as $donacion) {
+                    $donacion->usada = true;
+                    $temp = $temp-$donacion->unidades;
+                    $donacion->save();
+                    if ($temp <= 0) {
+                        break;
+                    }
+                }
             }
 
         }
